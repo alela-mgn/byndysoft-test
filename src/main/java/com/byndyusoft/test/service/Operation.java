@@ -1,4 +1,4 @@
-package com.byndyusoft.test.operation;
+package com.byndyusoft.test.service;
 
 public interface Operation {
 

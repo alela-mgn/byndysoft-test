@@ -1,4 +1,4 @@
-package com.byndyusoft.test.parser;
+package com.byndyusoft.test.service;
 
 public interface Parser {
 

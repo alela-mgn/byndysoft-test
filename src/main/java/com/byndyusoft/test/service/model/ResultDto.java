@@ -1,12 +1,13 @@
-package com.byndyusoft.test.calculate;
+package com.byndyusoft.test.service.model;
 
-import com.byndyusoft.test.validation.Validation;
+import com.byndyusoft.test.validation.Validator;
 
 import java.util.Stack;
 
-public class Calculate {
+public class ResultDto {
 
-    Validation validation = new Validation();
+    Validator validation = new Validator();
+
 
     public double calculateResult(String notation) {
         Stack<String> stack = new Stack<>();
@@ -41,4 +42,5 @@ public class Calculate {
         }
         return Double.parseDouble(stack.pop());
     }
+
 }

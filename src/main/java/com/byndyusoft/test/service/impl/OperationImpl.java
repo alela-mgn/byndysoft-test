@@ -1,4 +1,6 @@
-package com.byndyusoft.test.operation;
+package com.byndyusoft.test.service.impl;
+
+import com.byndyusoft.test.service.Operation;
 
 public class OperationImpl implements Operation {
 

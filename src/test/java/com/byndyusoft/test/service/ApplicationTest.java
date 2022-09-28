@@ -1,5 +1,6 @@
-package com.byndyusoft.test.parser;
+package com.byndyusoft.test.service;
 
+import com.byndyusoft.test.service.impl.ParserImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
