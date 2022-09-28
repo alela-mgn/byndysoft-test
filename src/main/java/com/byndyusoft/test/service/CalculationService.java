@@ -6,15 +6,16 @@ import com.byndyusoft.test.validation.Validator;
 
 public class CalculationService {
 
-    Validator validator = new Validator();
-    ParserImpl parser = new ParserImpl();
+    private Validator validator = new Validator();
+    private ParserImpl parser = new ParserImpl();
+    private ResultDto resultDto = new ResultDto();
 
     public ResultDto calculateExpression(String expression) {
-        if (!validator.hasOnlyAllowedChars()) {
+        if (!validator.hasOnlyAllowedChars(expression)) {
             return ResultDto.builder().errorMessage("Выражение может содержать только символы: + / - * ( ) и цифры").build();
         }
         String notation = parser.getReversPolishNotation(expression);
-        double result = calculate.calculateResult(notatin);
+        double result = resultDto.calculateResult(notation);
 
         return ResultDto.builder().value(result).build();
     }

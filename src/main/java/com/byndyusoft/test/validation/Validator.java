@@ -33,10 +33,10 @@ public class Validator {
 //    }
 //}
 //
-//    public boolean hasOnlyAllowedChars(String input) {
-//        return ALLOWED_SYMBOLS.chars()
-//                .mapToObj(Character::toString)
-//                .anyMatch(symbol -> symbol.equals(input));
-//    }
+    public boolean hasOnlyAllowedChars(String input) {
+        return ALLOWED_SYMBOLS.chars()
+                .mapToObj(Character::toString)
+                .anyMatch(symbol -> symbol.equals(input));
+    }
 
 }
