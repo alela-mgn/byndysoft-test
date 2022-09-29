@@ -2,7 +2,6 @@ package com.byndyusoft.test.service.model;
 
 import com.byndyusoft.test.exception.OperatorException;
 
-
 import java.util.EnumSet;
 
 public enum Operator {

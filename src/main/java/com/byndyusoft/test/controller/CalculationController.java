@@ -3,34 +3,41 @@ package com.byndyusoft.test.controller;
 import com.byndyusoft.test.service.CalculationService;
 import com.byndyusoft.test.service.model.ResultDto;
 import com.byndyusoft.test.view.InputHandler;
-import com.byndyusoft.test.view.ViewUser;
+import com.byndyusoft.test.view.View;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Optional;
 
+import static com.byndyusoft.test.view.Constants.*;
 
 public class CalculationController {
 
-    private ViewUser viewUser = new ViewUser();
-    private CalculationService calculationService = new CalculationService();
-    private InputHandler inputHandler = new InputHandler();
-    private String input = inputHandler.getUserInputLine();
+    private View view;
+    private CalculationService calculationService;
+    private InputHandler inputHandler;
+
+    public CalculationController(View view, CalculationService calculationService, InputHandler inputHandler) {
+        this.view = view;
+        this.calculationService = calculationService;
+        this.inputHandler = inputHandler;
+    }
 
     public void runCalc() {
-        while (!input.equals("quit") && !input.equals(" ")) {
-
+        view.printMessage(MAIN_MENU_MESSAGE);
+        String input = inputHandler.getUserInputLine();
+        while (!input.equalsIgnoreCase(QUIT_COMMAND)) {
             ResultDto result = calculationService.calculateExpression(input);
-            String output = Optional.ofNullable(result.getValue()).orElse(result.getErrorMessage());
-            viewUser.outputOnDisplay();
+            String output = Optional.ofNullable(result.getValue())
+                    .map(String::valueOf)
+                    .orElse(result.getErrorMessage());
+            view.printMessage(RESULT_MESSAGE + output);
 
 //            String notation = parser.getReversPolishNotation(input);
 //            double result = calculate.calculateResult(notation);
 //            System.out.println("\nResult: " + result);
 
+            input = inputHandler.getUserInputLine();
         }
-        System.out.println("Работа программы завершена!");
+        view.printMessage(EXIT_MESSAGE);
     }
 }
 

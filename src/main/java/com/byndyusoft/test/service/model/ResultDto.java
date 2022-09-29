@@ -1,46 +1,42 @@
 package com.byndyusoft.test.service.model;
 
-import com.byndyusoft.test.validation.Validator;
-
-import java.util.Stack;
-
 public class ResultDto {
+    private final Double value;
+    private final String errorMessage;
 
-    Validator validation = new Validator();
-
-
-    public double calculateResult(String notation) {
-        Stack<String> stack = new Stack<>();
-
-        for (String currentSymbol : notation.split(" ")) {
-            if (validation.isNumber(currentSymbol)) {
-                stack.push(currentSymbol);
-                continue;
-            }
-
-            if (validation.isOperator(currentSymbol)) {
-                double result = 0;
-                double first = Double.parseDouble(stack.pop());
-                double second = Double.parseDouble(stack.pop());
-
-                switch (currentSymbol) {
-                    case "/":
-                        result = second / first;
-                        break;
-                    case "*":
-                        result = second * first;
-                        break;
-                    case "+":
-                        result = second + first;
-                        break;
-                    case "-":
-                        result = second - first;
-                        break;
-                }
-                stack.push(String.valueOf(result));
-            }
-        }
-        return Double.parseDouble(stack.pop());
+    private ResultDto(Builder builder) {
+        this.value = builder.value;
+        this.errorMessage = builder.errorMessage;
     }
 
+    public Double getValue() {
+        return value;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private Double value;
+        private String errorMessage;
+
+        public Builder value(Double value) {
+            this.value = value;
+            return this;
+        }
+
+        public Builder errorMessage(String errorMessage) {
+            this.errorMessage = errorMessage;
+            return this;
+        }
+
+        public ResultDto build() {
+            return new ResultDto(this);
+        }
+    }
 }

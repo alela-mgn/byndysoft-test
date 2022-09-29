@@ -2,7 +2,6 @@ package com.byndyusoft.test.service.impl;
 
 import com.byndyusoft.test.service.Parser;
 import com.byndyusoft.test.service.model.Operator;
-import com.byndyusoft.test.validation.Validator;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,19 +11,18 @@ import static java.util.stream.Collectors.toList;
 
 public class ParserImpl implements Parser {
 
-    OperationImpl operationImpls = new OperationImpl();
-    Validator validation = new Validator();
+    private final Validator validator = new Validator();
 
     @Override
     public String getReversPolishNotation(String input) {
-        LinkedList<String> opn = new LinkedList<>();
+        LinkedList<String> operation = new LinkedList<>();
         Stack<String> stack = new Stack<>();
 
         List<String> chars = input.chars().mapToObj(Character::toString).collect(toList());
         for (String currentSymbol : chars) {
 
-            if (validation.isNumber(currentSymbol)) {
-                opn.add(currentSymbol + " ");
+            if (validator.isNumber(currentSymbol)) {
+                operation.add(currentSymbol + " ");
                 continue;
             }
 
@@ -33,10 +31,10 @@ public class ParserImpl implements Parser {
                 continue;
             }
 
-            if (validation.isOperator(currentSymbol)) {
+            if (validator.isOperator(currentSymbol)) {
                 while (!stack.isEmpty()
-                        && operationImpls.priorityOfOperation(stack.peek()) >= operationImpls.priorityOfOperation(currentSymbol)) {
-                    opn.add(stack.pop() + " ");
+                        && resolveOperationPriority(stack.peek()) >= resolveOperationPriority(currentSymbol)) {
+                    operation.add(stack.pop() + " ");
                 }
                 stack.push(currentSymbol);
                 continue;
@@ -44,27 +42,26 @@ public class ParserImpl implements Parser {
 
             if (currentSymbol.equals(")")) {
                 while (!stack.peek().equals("(")) {
-                    opn.add(stack.pop() + " ");
+                    operation.add(stack.pop() + " ");
                 }
                 stack.pop();
-                continue;
             }
         }
 
         while (!stack.empty()) {
-            opn.add(stack.pop() + " ");
+            operation.add(stack.pop() + " ");
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (String s : opn) {
-            sb.append(s);
+        StringBuilder string = new StringBuilder();
+        for (String s : operation) {
+            string.append(s);
         }
 
-        return sb.toString();
+        return string.toString();
     }
 
-    private int resolveOperationPriority(Operator operator) {
-        switch (operator) {
+    private int resolveOperationPriority(String operator) {
+        switch (Operator.getOperation(operator)) {
             case MULTIPLY:
             case DIVIDE:
                 return 2;

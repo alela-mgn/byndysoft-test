@@ -1,19 +1,22 @@
 package com.byndyusoft.test.view;
 
+import com.byndyusoft.test.exception.ConsoleInputException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
+
+import static com.byndyusoft.test.view.Constants.USER_INPUT_EXCEPTION_MESSAGE;
 
 public class InputHandler {
+    private static final BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
     public String getUserInputLine() {
-        String expression = null;
-
-       try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-           expression = reader.readLine();
+        try {
+            return consoleReader.readLine();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new ConsoleInputException(USER_INPUT_EXCEPTION_MESSAGE);
         }
-       return expression;
     }
 }
