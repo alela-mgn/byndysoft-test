@@ -20,14 +20,6 @@ public class Validator {
         }
     }
 
-    //    public boolean isOperator(String operator) {
-//        if (operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/")) {
-//            return true;
-//        } else {
-////            throw new OperatorException ("Введен не корректный символ! Допустим только +, -, *, /");
-//            return false;
-//        }
-//    }
     public boolean isOperator(String input) {
         try {
             Operator.getOperation(input);
@@ -36,7 +28,6 @@ public class Validator {
             return false;
         }
     }
-
 
     public boolean hasOnlyAllowedChars(String input) {
 

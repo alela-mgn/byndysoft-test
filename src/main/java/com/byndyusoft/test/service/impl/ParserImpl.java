@@ -4,10 +4,8 @@ import com.byndyusoft.test.service.Parser;
 import com.byndyusoft.test.service.model.Operator;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Stack;
 
-import static java.util.stream.Collectors.toList;
 
 public class ParserImpl implements Parser {
 

@@ -5,7 +5,6 @@ import com.byndyusoft.test.exception.ConsoleInputException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 import static com.byndyusoft.test.view.Constants.USER_INPUT_EXCEPTION_MESSAGE;
 

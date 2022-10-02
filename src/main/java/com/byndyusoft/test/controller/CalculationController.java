@@ -30,11 +30,6 @@ public class CalculationController {
                     .map(String::valueOf)
                     .orElse(result.getErrorMessage());
             view.printMessage(RESULT_MESSAGE + output);
-
-//            String notation = parser.getReversPolishNotation(input);
-//            double result = calculate.calculateResult(notation);
-//            System.out.println("\nResult: " + result);
-
             input = inputHandler.getUserInputLine();
         }
         view.printMessage(EXIT_MESSAGE);
