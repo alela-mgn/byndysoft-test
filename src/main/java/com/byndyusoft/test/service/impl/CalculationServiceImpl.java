@@ -20,7 +20,7 @@ public class CalculationServiceImpl implements CalculationService {
                     .errorMessage(OPERATION_EXCEPTION_MESSAGE)
                     .build();
         }
-        String notation = parser.getReversPolishNotation(expression);
+        String notation = parser.getReversPolishNotation(expression).replaceAll("[//(//)]", "");
         double result = operation.calculateResult(notation);
 
         return ResultDto.builder()

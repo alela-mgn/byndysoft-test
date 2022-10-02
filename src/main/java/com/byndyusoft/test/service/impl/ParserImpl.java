@@ -18,8 +18,9 @@ public class ParserImpl implements Parser {
         LinkedList<String> operation = new LinkedList<>();
         Stack<String> stack = new Stack<>();
 
-        List<String> chars = input.chars().mapToObj(Character::toString).collect(toList());
-        for (String currentSymbol : chars) {
+        String test = input.replaceAll("[-+*/()]", " $0 ").replace("  ", " ").trim();
+        //List<String> chars = input.chars().mapToObj(Character::toString).collect(toList());
+        for (String currentSymbol : test.split(" ")) {
 
             if (validator.isNumber(currentSymbol)) {
                 operation.add(currentSymbol + " ");

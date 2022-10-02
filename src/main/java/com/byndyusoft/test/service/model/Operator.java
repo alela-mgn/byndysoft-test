@@ -8,7 +8,9 @@ public enum Operator {
     PLUS("+"),
     MINUS("-"),
     MULTIPLY("*"),
-    DIVIDE("/");
+    DIVIDE("/"),
+    OPEN_BRACKET("("),
+    CLOSE_BRACKET(")");
 
     private final String sign;
 

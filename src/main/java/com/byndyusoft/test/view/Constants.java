@@ -3,7 +3,7 @@ package com.byndyusoft.test.view;
 public class Constants {
     public static final String MAIN_MENU_MESSAGE = "Для начала работы калькулятора введите выржание." + "\n"
             + "Вводите каждый символ через пробел" + "\n"
-            + "Для завершения работы программы введите quit или нажмите пробел" + "\n"
+            + "Для завершения работы программы введите quit" + "\n"
             + "Введите значение выражения: ";
 
     public static final String EXIT_MESSAGE = "Работа программы завершена!";
