@@ -1,23 +1,24 @@
-package com.byndyusoft.test.calculate;
+package com.expression.calculator.service.impl;
 
-import com.byndyusoft.test.validation.Validation;
+import com.expression.calculator.service.Operation;
 
 import java.util.Stack;
 
-public class Calculate {
+public class OperationImpl implements Operation {
 
-    Validation validation = new Validation();
+    private final Validator validator = new Validator();
 
-    public double calculateResult(String notation) {
+    @Override
+    public double calculateResult(String expression) {
         Stack<String> stack = new Stack<>();
 
-        for (String currentSymbol : notation.split(" ")) {
-            if (validation.isNumber(currentSymbol)) {
+        for (String currentSymbol : expression.split(" ")) {
+            if (validator.isNumber(currentSymbol)) {
                 stack.push(currentSymbol);
                 continue;
             }
 
-            if (validation.isOperator(currentSymbol)) {
+            if (validator.isOperator(currentSymbol)) {
                 double result = 0;
                 double first = Double.parseDouble(stack.pop());
                 double second = Double.parseDouble(stack.pop());
