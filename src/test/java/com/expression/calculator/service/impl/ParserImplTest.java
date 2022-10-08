@@ -14,4 +14,13 @@ public class ParserImplTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void preparingExpression() {
+        ParserImpl parser = new ParserImpl();
+        String expected = "0-(0-2)";
+        String actual  = parser.preparingExpression("-(-2)");
+
+        assertEquals(expected, actual);
+    }
 }

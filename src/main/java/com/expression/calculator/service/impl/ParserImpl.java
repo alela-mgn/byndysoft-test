@@ -69,4 +69,20 @@ public class ParserImpl implements Parser {
                 return 0;
         }
     }
+
+    public String preparingExpression(String expression) {
+        StringBuilder preparedExpression = new StringBuilder();
+        for (int token = 0; token < expression.length(); token++) {
+            char symbol = expression.charAt(token);
+            if (symbol == '-') {
+                if (token == 0) {
+                    preparedExpression.append('0');
+                } else if (expression.charAt(token - 1) == '(') {
+                    preparedExpression.append('0');
+                }
+            }
+            preparedExpression.append(symbol);
+        }
+        return preparedExpression.toString();
+    }
 }
