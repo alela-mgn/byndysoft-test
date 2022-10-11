@@ -7,6 +7,7 @@ import java.util.Stack;
 public class OperationImpl implements Operation {
 
     private final Validator validator = new Validator();
+    private final MathOperation mathOperation = new MathOperation();
 
     @Override
     public double calculateResult(String expression) {
@@ -19,24 +20,10 @@ public class OperationImpl implements Operation {
             }
 
             if (validator.isOperator(currentSymbol)) {
-                double result = 0;
+
                 double first = Double.parseDouble(stack.pop());
                 double second = Double.parseDouble(stack.pop());
-
-                switch (currentSymbol) {
-                    case "/":
-                        result = second / first;
-                        break;
-                    case "*":
-                        result = second * first;
-                        break;
-                    case "+":
-                        result = second + first;
-                        break;
-                    case "-":
-                        result = second - first;
-                        break;
-                }
+                double result = mathOperation.calculate(currentSymbol, first, second);
                 stack.push(String.valueOf(result));
             }
         }
