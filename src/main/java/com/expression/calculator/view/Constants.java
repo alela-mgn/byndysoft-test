@@ -2,7 +2,6 @@ package com.expression.calculator.view;
 
 public class Constants {
     public static final String MAIN_MENU_MESSAGE = "Для начала работы калькулятора введите выржание." + "\n"
-            + "Вводите каждый символ через пробел" + "\n"
             + "Для завершения работы программы введите quit" + "\n"
             + "Введите значение выражения: ";
 
